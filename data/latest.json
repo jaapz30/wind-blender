@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "location": "Schokkerhaven",
+    "models": [
+      "gfs",
+      "icon_eu",
+      "ecmwf_ifs",
+      "jma_msm"
+    ],
+    "generated_at": "2025-08-16T12:00:00Z"
+  },
+  "hours": [
+    {
+      "time": "2025-08-16T12:00",
+      "gfs": {
+        "wind": 15,
+        "gust": 18,
+        "dir": 270
+      },
+      "icon_eu": {
+        "wind": 14,
+        "gust": 17,
+        "dir": 260
+      }
+    },
+    {
+      "time": "2025-08-16T13:00",
+      "gfs": {
+        "wind": 16,
+        "gust": 20,
+        "dir": 280
+      },
+      "icon_eu": {
+        "wind": 15,
+        "gust": 19,
+        "dir": 270
+      }
+    }
+  ]
+}
