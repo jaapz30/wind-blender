@@ -1,16 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wind Blender Schokkerhaven</title>
-  <link rel="manifest" href="manifest.webmanifest" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wind Blender — Schokkerhaven</title>
+  <meta name="description" content="Gecombineerde windverwachting (GFS/ICON/ECMWF/JMA) met betrouwbaarheid, vlagerigheid en windrichting.">
   <link rel="stylesheet" href="styles.css" />
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('sw.js'));
+    }
+  </script>
+  <!-- Chart.js voor de grafiek -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <h1>🌊 Wind Blender Schokkerhaven</h1>
-  <p>Gecombineerde windverwachting (GFS, ICON, ECMWF, JMA)</p>
-  <div id="forecast">Laden...</div>
+  <header class="container">
+    <h1>Wind Blender</h1>
+    <p class="subtitle">Schokkerhaven • model-mix • betrouwbaarheid • richting</p>
+  </header>
+
+  <main class="container">
+    <!-- Info / knoppen -->
+    <section class="controls card">
+      <div class="badges">
+        <span class="badge" id="modelsBadge">Modellen: —</span>
+        <span class="badge" id="updatedBadge">Snapshot: —</span>
+        <span class="badge badge-strong" id="reliabilityBadge">Betrouwbaarheid (8u): —%</span>
+      </div>
+      <div class="row">
+        <label class="filelabel">
+          <input type="file" id="fileInput" accept=".json" />
+          Laad eigen JSON
+        </label>
+        <button id="resetBtn">Reset naar laatste snapshot</button>
+      </div>
+    </section>
+
+    <!-- KPI’s nu -->
+    <section class="grid">
+      <div class="kpi card">
+        <div class="kpi-label">Nu (komende uur) – wind</div>
+        <div class="kpi-value" id="kpiWind">— kn</div>
+      </div>
+      <div class="kpi card">
+        <div class="kpi-label">Windrichting</div>
+        <div class="kpi-value" id="kpiDir">—</div>
+      </div>
+      <div class="kpi card">
+        <div class="kpi-label">Vlagerigheid</div>
+        <div class="kpi-value" id="kpiGustiness">—%</div>
+      </div>
+    </section>
+
+    <!-- Duidelijke daggrafiek -->
+    <section class="card">
+      <h2>Vandaag – wind & vlagen (kn)</h2>
+      <canvas id="dayChart" height="140"></canvas>
+      <p class="hint">Tip: tik/hover voor exacte waardes per uur.</p>
+    </section>
+
+    <!-- Komende 8 uur -->
+    <section class="card">
+      <h2>Komende 8 uur</h2>
+      <div id="nextTable"></div>
+    </section>
+
+    <section class="card">
+      <h2>Uitleg</h2>
+      <ul>
+        <li><b>Betrouwbaarheid</b>: hoger als modellen dicht bij elkaar liggen (lage spreiding/IQR), en als er meer modellen zijn.</li>
+        <li><b>Vlagerigheid</b>: (vlaag − wind)/max(wind,1) × 100.</li>
+        <li>De site leest alleen <code>data/latest.json</code> (statisch). Een achtergrondtaak in GitHub ververst dit elk kwartier. Bij openen laad je altijd de nieuwste versie.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="container footer">© Wind Blender – open bron, 100% statisch</footer>
   <script src="script.js"></script>
 </body>
 </html>
