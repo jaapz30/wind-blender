@@ -3,14 +3,13 @@ name: Fetch Forecast Snapshot
 on:
   schedule:
     - cron: "*/15 * * * *"   # elke 15 minuten
-  workflow_dispatch:         # handmatig starten kan ook
+  workflow_dispatch: {}      # ook handmatig starten
 
 jobs:
   fetch:
     runs-on: ubuntu-latest
     permissions:
-      contents: write   # nodig om latest.json te committen
-
+      contents: write        # nodig om latest.json te committen
     steps:
       - name: Checkout
         uses: actions/checkout@v4
