@@ -5,14 +5,12 @@
     "lon": 5.783,
     "models": [
       "icon",
-      "ecmwf",
-      "jma"
+      "ecmwf"
     ],
-    "generated_at": "2026-01-25T11:14:06Z",
+    "generated_at": "2026-01-25T11:30:06Z",
     "aliases": {
       "icon": "icon_eu",
-      "ecmwf": "ecmwf_ifs",
-      "jma": "jma_seamless"
+      "ecmwf": "ecmwf_ifs"
     }
   },
   "hours": [
