@@ -4,13 +4,11 @@
     "lat": 52.623,
     "lon": 5.783,
     "models": [
-      "icon",
-      "jma"
+      "icon"
     ],
-    "generated_at": "2026-02-18T22:28:16Z",
+    "generated_at": "2026-02-18T23:00:08Z",
     "aliases": {
-      "icon": "icon_eu",
-      "jma": "jma_seamless"
+      "icon": "icon_eu"
     }
   },
   "hours": [
